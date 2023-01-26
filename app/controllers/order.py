@@ -18,7 +18,6 @@ class OrderController(BaseController):
     @classmethod
     def create(cls, order: dict):
         current_order = order.copy()
-        print(current_order)
         if not check_required_keys(cls.__required_info, current_order):
             return 'Invalid order payload', None
 
