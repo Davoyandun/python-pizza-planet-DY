@@ -6,7 +6,6 @@ from .builder_services import ServiceBuilder
 
 class OrderServiceBuilder(ServiceBuilder):
     controller = OrderController
-    name = 'order'
-    import_name = __name__
+    service = 'order'
 
 order = OrderServiceBuilder.build()

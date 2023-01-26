@@ -6,8 +6,7 @@ from .builder_services import ServiceBuilder
 
 class SizeServiceBuilder(ServiceBuilder):
     controller = SizeController
-    name = 'size'
-    import_name = __name__
+    service = 'size'
 
 size = SizeServiceBuilder.build()
 

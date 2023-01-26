@@ -6,7 +6,7 @@ from .builder_services import ServiceBuilder
 
 class BeverageServiceBuilder(ServiceBuilder):
     controller = BeverageController
-    name = 'beverage'
-    import_name = __name__
+    service = 'beverage'
+
 
 beverage = BeverageServiceBuilder.build()

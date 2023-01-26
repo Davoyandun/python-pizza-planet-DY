@@ -23,7 +23,6 @@ class ServiceBuilder:
         def update_method(_id: int):
             item, error = cls.controller.update({"_id": _id} | request.json)
             response = item if not error else {'error': error}
-            print("here")
             status_code = 200 if not error else 400
             return jsonify(response), status_code
 

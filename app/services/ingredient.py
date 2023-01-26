@@ -6,7 +6,6 @@ from .builder_services import ServiceBuilder
 
 class IngredientServiceBuilder(ServiceBuilder):
     controller = IngredientController
-    name = 'ingredient'
-    import_name = __name__
+    service = 'ingredient'
 
 ingredient = IngredientServiceBuilder.build()
