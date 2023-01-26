@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+  push:
+    branches:
+      - main
+
 jobs:
   ci-pizza-planet:
     runs-on: ubuntu-latest
