@@ -1,6 +1,7 @@
+from ipaddress import summarize_address_range
 from typing import Any, List, Optional, Sequence
 
-from sqlalchemy.sql import text, column
+from sqlalchemy.sql import text, column, func
 
 from .models import Ingredient, Order, OrderDetail, Size, Beverage, db
 from .serializers import (IngredientSerializer, OrderSerializer,
@@ -89,3 +90,77 @@ class IndexManager(BaseManager):
     @classmethod
     def test_connection(cls):
         cls.session.query(column('1')).from_statement(text('SELECT 1')).all()
+
+
+class ReportManager:
+    session = db.session
+
+    @classmethod
+    def get_top_ingredient(cls):
+        ingredient =  (
+            cls.session.query(OrderDetail, func.count(OrderDetail.ingredient_id))
+            .group_by(OrderDetail.ingredient_id)
+            .order_by(func.sum(OrderDetail.ingredient_id).desc())
+            .limit(1)
+            .all()
+            or []
+        )
+        ingredient_dict = [{"id": i.ingredient_id, "count": c} for i, c in ingredient]
+        ingredient_name = (cls.session.query(Ingredient).filter(Ingredient._id == ingredient_dict[0]["id"]).first()).name
+        ingredient_dict[0]["name"] = ingredient_name
+        return ingredient_dict
+    
+    @classmethod
+    def get_top_beverage(cls):
+        beverage= (
+            cls.session.query(OrderDetail, func.count(OrderDetail.beverage_id))
+            .group_by(OrderDetail.beverage_id)
+            .order_by(func.sum(OrderDetail.beverage_id).desc())
+            .limit(1)
+            .all()
+            or []
+        )
+
+        beverage_dict = [{"id": i.beverage_id, "count": c} for i, c in beverage]
+        beverage_name = (cls.session.query(Beverage).filter(Beverage._id == beverage_dict[0]["id"]).first()).name
+        beverage_dict[0]["name"] = beverage_name 
+        return beverage_dict
+
+    @classmethod
+    def get_top3_clients(cls):
+        clients=  (
+            cls.session.query(Order, func.count(Order.client_dni))
+            .group_by(Order.client_dni)
+            .order_by(func.count(Order.client_dni).desc())
+            .limit(3)
+            .all()
+            or []
+        )
+        clients_dict = [{"dni": i.client_dni, "count": c, "name": i.client_name} for i, c in clients]
+        return clients_dict
+
+   
+
+    @classmethod
+    def get_top_month(cls):
+        return (
+            cls.session.query(Order.date, func.count(Order._id))
+            .group_by(Order.date)
+            .order_by(func.count(Order.total_price).desc())
+            .limit(1)
+            .all()
+        )[0].date.month
+
+    @classmethod
+    def get_report(cls):
+        top_ingredient = cls.get_top_ingredient()[0]
+        top_beverage = cls.get_top_beverage()[0]
+        top3_clients = cls.get_top3_clients()
+        top_month = cls.get_top_month()
+        return {
+           'top_ingredient': top_ingredient,
+           'top_beverage': top_beverage,
+           'top3_clients': top3_clients,
+            'top_month': top_month,
+        }
+        
