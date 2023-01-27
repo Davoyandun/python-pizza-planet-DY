@@ -41,4 +41,4 @@ class OrderDetail(db.Model):
     beverage_id = db.Column(db.Integer, db.ForeignKey('beverage._id'))
     ingredient = db.relationship('Ingredient', backref=db.backref('ingredient'))
     beverage = db.relationship('Beverage', backref=db.backref('beverage'))
-  #  detail_total_price = db.Column(db.Float)
+
