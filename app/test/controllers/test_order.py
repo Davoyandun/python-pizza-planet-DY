@@ -50,7 +50,7 @@ def test_calculate_order_price(app, ingredients, size, client_data):
     created_size, created_ingredients = __create_sizes_and_ingredients(ingredients, [size])
     order = __order(created_ingredients, created_size, client_data)
     created_order, _ = OrderController.create(order)
-    pytest.assume(created_order['total_price'] == round(sum(ingredient['price'] for ingredient in created_ingredients), 2)+created_size['price'])
+    pytest.assume(created_order['total_price'] == round(sum(ingredient['price'] for ingredient in created_ingredients), 2)+created_size['price']) + sum (ingredient['price'] for ingredient in created_ingredients)
 
 
 def test_get_by_id(app, ingredients, size, client_data):
