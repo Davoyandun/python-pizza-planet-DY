@@ -1,0 +1,12 @@
+[
+  { "name": "Coca Cola", "price": "1.50" },
+  { "name": "Fanta", "price": "1.50" },
+  { "name": "Sprite", "price": "1.50" },
+  { "name": "Pepsi", "price": "1.50" },
+  { "name": "Nestea", "price": "1.50" },
+  { "name": "Inka", "price": "1.50" },
+  { "name": "Beer", "price": "1.50" },
+  { "name": "Water", "price": "1.50" },
+  { "name": "Milk shake", "price": "1.50" },
+  { "name": "juice", "price": "1.50" }
+]
