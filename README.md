@@ -82,7 +82,10 @@ set FLASK_ENV=development
 ```bash
 python3 manage.py run
 ```
-
+### Generate fake data 
+```bash
+python -m app.seeder.seeder
+```
 ## Running the frontend
 
 - Clone git UI submodule
