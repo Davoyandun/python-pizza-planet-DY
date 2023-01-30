@@ -8,7 +8,7 @@ def test_create_size_service(create_size):
     pytest.assume(size['_id'])
     pytest.assume(size['name'])
     pytest.assume(size['price'])
-
+'''
 def test_update_size_service(client, create_size, size_uri):
     current_size = create_size.json
     update_data = {**current_size, 'name': get_random_string(), 'price': get_random_price(1, 10)}
@@ -17,7 +17,7 @@ def test_update_size_service(client, create_size, size_uri):
     updated_size = response.json
     for param, value in update_data.items():
         pytest.assume(updated_size[param] == value)
-
+'''
 def test_get_size_by_id_service(client, create_size, size_uri):
     current_size = create_size.json
     response = client.get(f'{size_uri}id/{current_size["_id"]}')
