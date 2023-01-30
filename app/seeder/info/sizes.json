@@ -1,0 +1,7 @@
+[
+  { "name": "individual", "price": "2.50" },
+  { "name": "median", "price": "7.50" },
+  { "name": "familiar", "price": "12.50" },
+  { "name": "party", "price": "17.50" },
+  { "name": "extra", "price": "22.50" }
+]

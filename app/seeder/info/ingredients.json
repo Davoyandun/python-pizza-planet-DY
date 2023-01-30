@@ -1,0 +1,12 @@
+[
+  { "name": "Tomato", "price": ".75" },
+  { "name": "Onion", "price": ".50" },
+  { "name": "Cheese", "price": "1.00" },
+  { "name": "Ham", "price": "1.50" },
+  { "name": "Pepperoni", "price": "1.00" },
+  { "name": "Bacon", "price": "1.50" },
+  { "name": "Mushrooms", "price": ".75" },
+  { "name": "Pineapple", "price": ".75" },
+  { "name": "Sausage", "price": "1.00" },
+  { "name": "Chicken", "price": "1.50" }
+]
